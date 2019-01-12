@@ -10,3 +10,12 @@ app.listen(3000,()=>{
 app.get("/",(res,req)=>{
     req.send("hello world") ; 
 })
+
+con.connect(function(err) {
+    if (err) throw err;
+    console.log("Connected!");
+    con.query(sql, function (err, result) {
+      if (err) throw err;
+      console.log("Result: " + result);
+    });
+  });
