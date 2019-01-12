@@ -1,8 +1,20 @@
 const express = require("express") ; 
 const app = express() ; 
+const mysql = require("mysql") ; 
+const con = mysql.createConnection({
+    host: "localhost",
+    username: "root",
+    password: ""
+});
+
+con.connect((err)=>{
+    if (err) throw err;
+    console.log("connected");
+    
+})
 
 //port to listen to 
-app.listen(3000,()=>{
+app.listen(3100,()=>{
     console.log("why me") ; 
 });
 
