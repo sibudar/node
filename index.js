@@ -3,15 +3,16 @@ const app = express() ;
 const mysql = require("mysql") ; 
 const con = mysql.createConnection({
     host: "localhost",
-    username: "root",
-    password: ""
+    user: "root",
+    password: "",
+    database: "Recommender"
 });
 
 con.connect((err)=>{
     if (err) throw err;
     console.log("connected");
     
-})
+});
 
 //port to listen to 
 app.listen(3100,()=>{
@@ -21,13 +22,10 @@ app.listen(3100,()=>{
 //route to go to and display following message
 app.get("/",(res,req)=>{
     req.send("hello world") ; 
-})
+});
 
-con.connect(function(err) {
-    if (err) throw err;
-    console.log("Connected!");
-    con.query(sql, function (err, result) {
-      if (err) throw err;
-      console.log("Result: " + result);
-    });
+con.query('CALL `getOrder`()', function (error, results, fields) {
+    if (error) throw error;
+    console.log('The solution is: ', results);
   });
+
